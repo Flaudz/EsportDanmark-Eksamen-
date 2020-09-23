@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EsportDanmark.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace EsportDanmark
     /// </summary>
     public partial class MainWindow : Window
     {
+        MiddleClass middleClass = new MiddleClass();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void lookPlayersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            lookCanvasMenu.Visibility = Visibility.Hidden;
+
+
+
+            lookCanvasPlayers.Visibility = Visibility.Visible;
         }
     }
 }

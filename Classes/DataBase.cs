@@ -55,5 +55,34 @@ namespace EsportDanmark.Classes
                 $"INSERT INTO Tournements (TournermentName, PlayerId, PlayerName, PlayersPhoneNumber, RefId, RefName, RefPhoneNumber, RefLevel) VALUES ('{tournement.Tournermentname}', {tournement.Playerid}, '{tournement.Playername}', {tournement.Playerphonenumber}, {tournement.Refid}, '{tournement.Refname}', {tournement.Refphonenumber}, {tournement.Reflevel})";
             Execute(addNewTournementQuery);
         }
+
+
+        // Get information from database
+
+        public List<Player> GetPlayers()
+        {
+            List<Player> playersList = new List<Player>();
+            string allPlayersQuery = "SELECT * FROM Players";
+
+            // Eksikver query og gemmer i en variabel
+            DataSet resultSet = Execute(allPlayersQuery);
+
+            // Får første table af data sættet og gemmer i en variabel
+            DataTable playerTable = resultSet.Tables[0];
+
+
+
+            foreach (DataRow playerRow in playerTable.Rows)
+            {
+                string name = (string)playerRow["Name"];
+                string summonername = (string)playerRow["SummonerName"];
+                int rank = (int)playerRow["Rank"];
+                int phonenumber = (int)playerRow["PhoneNumber"];
+                string tournementtype = (string)playerRow["TournermentType"];
+                Player player = new Player(name, summonername, rank, phonenumber, tournementtype);
+                playersList.Add(player);
+            }
+            return playersList;
+        }
     }
 }

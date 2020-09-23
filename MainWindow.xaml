@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EsportDanmark"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="720" Width="1080">
+    <Canvas x:Name="motherCanvas" Background="LightGray">
+        <Canvas x:Name="menuCanvas" Width="280" Height="720" Background="LightBlue">
 
-    </Grid>
+            <TextBlock x:Name="Title" Text="EsportDenmark" FontSize="30" FontWeight="Bold" Foreground="White" Width="280" TextAlignment="Center" Canvas.Top="30"/>
+            <TextBlock FontSize="30" FontWeight="Bold" Width="280" Text="_______________________" Foreground="White" Canvas.Top="50"/>
+
+            <Button x:Name="lookMenuBtn" Content="Kig" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="150" BorderThickness="0"/>
+            <Button x:Name="addMenuBtn" Content="Tilføj" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="220" BorderThickness="0"/>
+            <Button x:Name="deleteMenuBtn" Content="Slet" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="290" BorderThickness="0"/>
+            <Button x:Name="updateMenuBtn" Content="Opdatere" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="360" BorderThickness="0"/>
+        </Canvas>
+
+        <Canvas x:Name="lookCanvas" Width="800" Canvas.Left="280" Height="1080">
+            <Canvas x:Name="lookCanvasMenu" Visibility="Visible">
+                <Button x:Name="lookPlayersBtn" Width="250" FontSize="40" Content="Spillere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="50" Click="lookPlayersBtn_Click"/>
+                <Button x:Name="lookSponsorersBtn" Width="250" FontSize="40" Content="Sponsorere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="150"/>
+                <Button x:Name="lookTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250"/>
+                <Button x:Name="lookEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350"/>
+            </Canvas>
+
+            <Canvas Visibility="Hidden" x:Name="lookCanvasPlayers">
+                <TextBlock x:Name="lookPlayersTextBlock" Width="800" Height="720" Background="White" FontSize="20"/>
+            </Canvas>
+        </Canvas>
+    </Canvas>
 </Window>
