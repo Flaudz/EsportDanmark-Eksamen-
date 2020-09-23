@@ -12,22 +12,93 @@
             <TextBlock x:Name="Title" Text="EsportDenmark" FontSize="30" FontWeight="Bold" Foreground="White" Width="280" TextAlignment="Center" Canvas.Top="30"/>
             <TextBlock FontSize="30" FontWeight="Bold" Width="280" Text="_______________________" Foreground="White" Canvas.Top="50"/>
 
-            <Button x:Name="lookMenuBtn" Content="Kig" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="150" BorderThickness="0"/>
-            <Button x:Name="addMenuBtn" Content="Tilføj" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="220" BorderThickness="0"/>
-            <Button x:Name="deleteMenuBtn" Content="Slet" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="290" BorderThickness="0"/>
-            <Button x:Name="updateMenuBtn" Content="Opdatere" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="360" BorderThickness="0"/>
+            <Button x:Name="lookMenuBtn" Content="Kig" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="150" BorderThickness="0" Click="lookMenuBtn_Click"/>
+            <Button x:Name="addMenuBtn" Content="Tilføj" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="220" BorderThickness="0" Click="addMenuBtn_Click"/>
+            <Button x:Name="deleteMenuBtn" Content="Slet" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="290" BorderThickness="0" Click="deleteMenuBtn_Click"/>
+            <Button x:Name="updateMenuBtn" Content="Opdatere" Width="280" Background="Transparent" FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="360" BorderThickness="0" Click="updateMenuBtn_Click"/>
         </Canvas>
 
-        <Canvas x:Name="lookCanvas" Width="800" Canvas.Left="280" Height="1080">
+        <Canvas x:Name="lookCanvas" Width="800" Canvas.Left="280" Height="720" Visibility="Hidden">
             <Canvas x:Name="lookCanvasMenu" Visibility="Visible">
                 <Button x:Name="lookPlayersBtn" Width="250" FontSize="40" Content="Spillere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="50" Click="lookPlayersBtn_Click"/>
-                <Button x:Name="lookSponsorersBtn" Width="250" FontSize="40" Content="Sponsorere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="150"/>
-                <Button x:Name="lookTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250"/>
-                <Button x:Name="lookEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350"/>
+                <Button x:Name="lookSponsorersBtn" Width="250" FontSize="40" Content="Sponsorere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="150" Click="lookSponsorersBtn_Click"/>
+                <Button x:Name="lookTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250" Click="lookTournementsBtn_Click"/>
+                <Button x:Name="lookEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350" Click="lookEmployeesBtn_Click"/>
             </Canvas>
 
             <Canvas Visibility="Hidden" x:Name="lookCanvasPlayers">
                 <TextBlock x:Name="lookPlayersTextBlock" Width="800" Height="720" Background="White" FontSize="20"/>
+            </Canvas>
+
+            <Canvas Visibility="Hidden" x:Name="lookCanvasSponsor">
+                <TextBlock x:Name="lookSponsorsTextBlock" Width="800" Height="720" Background="White" FontSize="20"/>
+            </Canvas>
+
+            <Canvas Visibility="Hidden" x:Name="lookCanvasTournement">
+                <TextBlock x:Name="lookTournementTextBlock" Width="800" Height="720" Background="White" FontSize="20"/>
+            </Canvas>
+
+            <Canvas Visibility="Hidden" x:Name="lookCanvasEmployee">
+                <TextBlock x:Name="lookEmployeeTextBlock" Width="800" Height="720" Background="White" FontSize="20"/>
+            </Canvas>
+        </Canvas>
+
+        <Canvas x:Name="addCanvas" Width="800" Canvas.Left="280" Height="720" Visibility="Hidden">
+            <Canvas x:Name="addCanvasMenu" Visibility="Visible">
+                <Button x:Name="addPlayersBtn" Width="250" FontSize="40" Content="Spillere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="50" Click="addPlayersBtn_Click"/>
+                <Button x:Name="addSponsorersBtn" Width="250" FontSize="40" Content="Sponsorere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="150"/>
+                <Button x:Name="addTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250"/>
+                <Button x:Name="addEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350"/>
+            </Canvas>
+
+            <Canvas Visibility="Hidden" x:Name="addCanvasPlayer">
+                <TextBox x:Name="addPlayerNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="Name"/>
+                <TextBox x:Name="addPlayerSummonerNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="InGame Name" Canvas.Top="50"/>
+                <TextBox x:Name="addPlayerRankInput" Width="800" FontSize="25" TextAlignment="Center" Text="Player Rank" Canvas.Top="100"/>
+                <TextBox x:Name="addPlayerPhoneNumberInput" Width="800" FontSize="25" TextAlignment="Center" Text="TelefonNumber" Canvas.Top="150"/>
+                <TextBox x:Name="addPlayerTournementTypeInput" Width="800" FontSize="25" TextAlignment="Center" Text="TournementType" Canvas.Top="200"/>
+
+                <Button x:Name="addPlayerBtn" Content="Add Player" FontSize="20" FontWeight="Bold" Width="150" Canvas.Left="325" Canvas.Top="500" Click="addPlayerBtn_Click"/>
+            </Canvas>
+        </Canvas>
+
+
+
+        <Canvas x:Name="deleteCanvas" Visibility="Hidden" Width="800" Canvas.Left="280" Height="720">
+            <Canvas x:Name="deleteCanvasMenu" Visibility="Visible">
+                <Button x:Name="deletePlayersBtn" Width="250" FontSize="40" Content="Spillere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="50" Click="deletePlayersBtn_Click" />
+                <Button x:Name="deleteSponsorersBtn" Width="250" FontSize="40" Content="Sponsorere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="150"/>
+                <Button x:Name="deleteTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250"/>
+                <Button x:Name="deleteEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350"/>
+            </Canvas>
+
+            <Canvas x:Name="deleteCanvasPlayer" Visibility="Hidden">
+                <TextBox x:Name="deletePlayerPhoneNumberInput" Text="PhoneNumber" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="150" />
+                <Button x:Name="deletePlayerBtn" Content="Delete Player" FontSize="20" FontWeight="Bold" Width="150" Canvas.Left="325" Canvas.Top="500" Click="deletePlayerBtn_Click"/>
+            </Canvas>
+        </Canvas>
+
+
+
+        <Canvas x:Name="updateCanvas" Width="800" Canvas.Left="280" Height="720" Visibility="Hidden">
+            <Canvas x:Name="updateCanvasMenu" Visibility="Visible">
+
+                <Button x:Name="updatePlayersBtn" Width="250" FontSize="40" Content="Spillere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="50" Click="updatePlayersBtn_Click" />
+                <Button x:Name="updateSponsorersBtn" Width="250" FontSize="40" Content="Sponsorere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="150"/>
+                <Button x:Name="updateTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250"/>
+                <Button x:Name="updateEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350"/>
+
+            </Canvas>
+
+            <Canvas x:Name="updateCanvasPlayer" Visibility="Hidden">
+                <TextBox x:Name="updatePlayerNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="Name"/>
+                <TextBox x:Name="updatePlayerSummonerNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="InGame Name" Canvas.Top="50"/>
+                <TextBox x:Name="updatePlayerRankInput" Width="800" FontSize="25" TextAlignment="Center" Text="Player Rank" Canvas.Top="100"/>
+                <TextBox x:Name="updatePlayerPhoneNumberInput" Width="800" FontSize="25" TextAlignment="Center" Text="TelefonNumber" Canvas.Top="150"/>
+                <TextBox x:Name="updatePlayerTournementTypeInput" Width="800" FontSize="25" TextAlignment="Center" Text="TournementType" Canvas.Top="200"/>
+                <TextBox x:Name="choosePlayerPhoneNumberInput" Text="Early PhoneNumber" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="300" />
+
+                <Button x:Name="updatePlayerBtn" Content="Update Player" FontSize="20" FontWeight="Bold" Width="150" Canvas.Left="325" Canvas.Top="500" Click="updatePlayerBtn_Click" />
             </Canvas>
         </Canvas>
     </Canvas>
