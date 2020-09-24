@@ -155,7 +155,7 @@ namespace EsportDanmark
 
         private void addSponsorBtn_Click(object sender, RoutedEventArgs e)
         {
-            middleClass.CreateSponsor(addSponsorCompanyNameInput.Text, addSponsorBrancheInput.Text, int.Parse(addSponsorPlayerIdInput.Text), addSponsorPlayerNameInput.Text, int.Parse(addSponsorPlayerSaleryInput.Text));
+            middleClass.CreateSponsor(addSponsorCompanyNameInput.Text, addSponsorBrancheInput.Text, addSponsorPlayerNameInput.Text, int.Parse(addSponsorPlayerSaleryInput.Text));
             addCanvasSponsor.Visibility = Visibility.Hidden;
             addCanvasMenu.Visibility = Visibility.Visible;
             addCanvas.Visibility = Visibility.Hidden;
@@ -330,7 +330,7 @@ namespace EsportDanmark
 
         private void updateSponsorBtn_Click(object sender, RoutedEventArgs e)
         {
-            middleClass.updateSponsor(updateSponsorCompanyNameInput.Text, updateSponsorBrancheInput.Text, int.Parse(updateSponsorPlayerIdInput.Text), updateSponsorPlayerNameInput.Text, int.Parse(updateSponsorPlayerSaleryInput.Text), chooseSponsorNameInput.Text);
+            middleClass.updateSponsor(updateSponsorCompanyNameInput.Text, updateSponsorBrancheInput.Text, updateSponsorPlayerNameInput.Text, int.Parse(updateSponsorPlayerSaleryInput.Text), chooseSponsorNameInput.Text);
             updateCanvasMenu.Visibility = Visibility.Visible;
             updateCanvas.Visibility = Visibility.Hidden;
             updateCanvasSponsor.Visibility = Visibility.Hidden;
@@ -359,9 +359,14 @@ namespace EsportDanmark
 
         private void updateEmployeesBtn_Click(object sender, RoutedEventArgs e)
         {
-            updateCanvas.Visibility = Visibility.Hidden;
-            updateCanvasEmployee.Visibility = Visibility.Hidden;
-            updateCanvasMenu.Visibility = Visibility.Visible;
+            updateCanvasEmployee.Visibility = Visibility.Visible;
+            updateCanvasMenu.Visibility = Visibility.Hidden;
+        }
+
+        private void deleteEmployeesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            deleteCanvasMenu.Visibility = Visibility.Hidden;
+            deleteCanvasEmployee.Visibility = Visibility.Visible;
         }
     }
 }

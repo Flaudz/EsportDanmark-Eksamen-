@@ -32,6 +32,14 @@ namespace EsportDanmark.Classes
             Playersalery = playersalery;
         }
 
+        public Sponsor(string companyname, string branche, string playername, int playersalery)
+        {
+            Companyname = companyname;
+            Branche = branche;
+            Playername = playername;
+            Playersalery = playersalery;
+        }
+
         public Sponsor()
         {
 

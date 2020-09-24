@@ -44,9 +44,9 @@ namespace EsportDanmark.Classes
         }
 
         // Creating a Sponsor
-        public void CreateSponsor(string companyname, string branche, int playerid, string playername, int playersaleryinput)
+        public void CreateSponsor(string companyname, string branche, string playername, int playersaleryinput)
         {
-            Sponsor sponsor = new Sponsor(companyname, branche, playerid, playername, playersaleryinput);
+            Sponsor sponsor = new Sponsor(companyname, branche, playername, playersaleryinput);
             db.AddNewSponsor(sponsor);
         }
 
@@ -71,7 +71,7 @@ namespace EsportDanmark.Classes
             players = db.GetPlayers();
             foreach (Player player in players)
             {
-                playersInfoString += $"Name: {player.Name} - Summonername: {player.Summonername} - Rank: {player.Rank} - Telefonnummber: {player.Phonenumber} - Turneringer: {player.Tournermenttype}&#x0a;&#x0a;";
+                playersInfoString += $"Name: {player.Name} - Summonername: {player.Summonername} - Rank: {player.Rank} - Telefonnummber: {player.Phonenumber} - Turneringer: {player.Tournermenttype}\n";
             }
             return playersInfoString;
         }
@@ -83,7 +83,7 @@ namespace EsportDanmark.Classes
             sponsors = db.GetSponsors();
             foreach (Sponsor sponsor in sponsors)
             {
-                sponsorInfoString += $"Name: {sponsor.Companyname} - Branche: {sponsor.Branche} - PlayerId: {sponsor.Playerid} - PlayerName: {sponsor.Playername} - PlayerSalery: {sponsor.Playersalery}&#x0a;&#x0a;";
+                sponsorInfoString += $"Name: {sponsor.Companyname} - Branche: {sponsor.Branche} - PlayerId: {sponsor.Playerid} - PlayerName: {sponsor.Playername} - PlayerSalery: {sponsor.Playersalery}\n";
             }
             return sponsorInfoString;
         }
@@ -95,7 +95,7 @@ namespace EsportDanmark.Classes
             tournements = db.GetTournements();
             foreach (Tournement tournement in tournements)
             {
-                tournementInfoString += $"TournementName: {tournement.Tournermentname} - PlayerId: {tournement.Playerid} - PlayerName: {tournement.Playername} - PlayerPhoneNumber: {tournement.Playerphonenumber} - RefId: {tournement.Refid} - RefName: {tournement.Refname} - RefPhoneNumber: {tournement.Refphonenumber} - RefLevel: {tournement.Reflevel}&#x0a;&#x0a;";
+                tournementInfoString += $"TournementName: {tournement.Tournermentname} - PlayerId: {tournement.Playerid} - PlayerName: {tournement.Playername} - PlayerPhoneNumber: {tournement.Playerphonenumber} - RefId: {tournement.Refid} - RefName: {tournement.Refname} - RefPhoneNumber: {tournement.Refphonenumber} - RefLevel: {tournement.Reflevel}\n";
             }
             return tournementInfoString;
         }
@@ -107,7 +107,7 @@ namespace EsportDanmark.Classes
             employees = db.GetEmployees();
             foreach (Employee employee in employees)
             {
-                employeeInfoString += $"Name: {employee.Name} - PhoneNumber: {employee.Phonenumber} - Salary: {employee.Salary} - JobType: {employee.Jobtype} - JudgeLevel: {employee.Judgelevel}&#x0a;&#x0a;";
+                employeeInfoString += $"Name: {employee.Name} - PhoneNumber: {employee.Phonenumber} - Salary: {employee.Salary} - JobType: {employee.Jobtype} - JudgeLevel: {employee.Judgelevel}\n";
             }
             return employeeInfoString;
         }
@@ -144,9 +144,9 @@ namespace EsportDanmark.Classes
 
 
         // Update Sponsor Information
-        public void updateSponsor(string companyname, string branche, int playerid, string playername, int playersaleryinput, string beforecompanyname)
+        public void updateSponsor(string companyname, string branche, string playername, int playersaleryinput, string beforecompanyname)
         {
-            Sponsor sponsor = new Sponsor(companyname, branche, playerid, playername, playersaleryinput);
+            Sponsor sponsor = new Sponsor(companyname, branche, playername, playersaleryinput);
             db.updateSponsor(sponsor, beforecompanyname);
         }
 

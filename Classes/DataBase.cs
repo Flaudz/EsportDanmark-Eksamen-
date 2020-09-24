@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection.Metadata;
 using System.Security.Permissions;
 using System.Text;
 using System.Windows;
@@ -89,7 +90,7 @@ namespace EsportDanmark.Classes
         // Making a mothod where there will be added a new tournement in the database table Tournements
         public void AddNewTournement(Tournement tournement)
         {
-            string allEmployeesQuery = $"SELECT Id, PhoneNumber, JudgeLevel FROM Employees WHERE Name = '{tournement.Refname}'";
+            string allEmployeesQuery = $"SELECT Id, PhoneNumber, JudgeLevel, JobType FROM Employees WHERE Name = '{tournement.Refname}'";
             string allPlayersQuery = $"SELECT Id, PhoneNumber FROM Players WHERE Name = '{tournement.Playername}'";
 
             // Eksikver query og gemmer i en variabel
@@ -105,6 +106,7 @@ namespace EsportDanmark.Classes
                 int refId = (int)employeeRow["Id"];
                 int refPhonenumber = (int)employeeRow["PhoneNumber"];
                 int refLevel = (int)employeeRow["JudgeLevel"];
+                string jobtype = (string)employeeRow["JobType"];
                 foreach (DataRow playerRow in playerTable.Rows)
                 {
                     int playerId = (int)playerRow["Id"];
@@ -113,7 +115,14 @@ namespace EsportDanmark.Classes
                         $"INSERT INTO Tournements (TournermentName, PlayerId, PlayersName, PlayersPhoneNumber, RefId, RefName, RefPhoneNumber, RefLevel) VALUES ('{tournement.Tournermentname}', {playerId}, '{tournement.Playername}', {playerPhonenumber}, {refId}, '{tournement.Refname}', {refPhonenumber}, {refLevel})";
                     try
                     {
-                        Execute(addNewTournementQuery);
+                        if (jobtype == "Ref" || jobtype == "Judge")
+                        {
+                            Execute(addNewTournementQuery);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Denne Ansat er ikke en dommer.");
+                        }
                     }
                     catch (Exception e)
                     {
@@ -242,6 +251,22 @@ namespace EsportDanmark.Classes
         // Slette spiller fra databasen
         public void deletePlayer(int phonenumber)
         {
+            string allPlayersQuery = $"SELECT Name FROM Players WHERE PhoneNumber = {phonenumber}";
+
+            // Eksikver query og gemmer i en variabel
+            DataSet resultSet = Execute(allPlayersQuery);
+
+            // Får Første table af data sættet og gemmer i en variabel
+            DataTable playerTable = resultSet.Tables[0];
+
+            foreach (DataRow person in playerTable.Rows)
+            {
+                string name = (string)person["Name"];
+                string deleteSponsorQuery =
+                    $"DELETE FROM Sponsorers WHERE PlayerName = '{name}'";
+                Execute(deleteSponsorQuery);
+            }
+
             string deletePlayerQuery =
                 $"DELETE FROM Players WHERE PhoneNumber = {phonenumber}";
             Execute(deletePlayerQuery);
