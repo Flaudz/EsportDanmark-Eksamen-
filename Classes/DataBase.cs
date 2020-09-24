@@ -59,31 +59,69 @@ namespace EsportDanmark.Classes
         // Making a mothod where there will be added a new sponsor in the database table Sponsorers
         public void AddNewSponsor(Sponsor sponsor)
         {
-            string addNewSponsorQuery =
-                $"INSERT INTO Sponsorers (CompanyName, Branche, PlayerId, PlayerName, PlayerSalery) VALUES ('{sponsor.Companyname}', '{sponsor.Branche}', {sponsor.Playerid}, '{sponsor.Playername}', {sponsor.Playersalery})";
-            try
+            string allPlayersQuery = $"SELECT Id FROM Players WHERE Name = '{sponsor.Playername}'";
+
+            // Eksikver query og gemmer i en variabel
+            DataSet resultSet = Execute(allPlayersQuery);
+
+            // Får første table af data sættet og gemmer i en variabel
+            DataTable playerTable = resultSet.Tables[0];
+
+
+
+            foreach (DataRow playerRow in playerTable.Rows)
             {
-                Execute(addNewSponsorQuery);
+                int id = (int)playerRow["Id"];
+                string addNewSponsorQuery =
+                    $"INSERT INTO Sponsorers (CompanyName, Branche, PlayerId, PlayerName, PlayerSalery) VALUES ('{sponsor.Companyname}', '{sponsor.Branche}', {id}, '{sponsor.Playername}', {sponsor.Playersalery})";
+                try
+                {
+                    Execute(addNewSponsorQuery);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString());
-            }
+
         }
 
         // Making a mothod where there will be added a new tournement in the database table Tournements
         public void AddNewTournement(Tournement tournement)
         {
-            string addNewTournementQuery =
-                $"INSERT INTO Tournements (TournermentName, PlayerId, PlayerName, PlayersPhoneNumber, RefId, RefName, RefPhoneNumber, RefLevel) VALUES ('{tournement.Tournermentname}', {tournement.Playerid}, '{tournement.Playername}', {tournement.Playerphonenumber}, {tournement.Refid}, '{tournement.Refname}', {tournement.Refphonenumber}, {tournement.Reflevel})";
-            try
+            string allEmployeesQuery = $"SELECT Id, PhoneNumber, JudgeLevel FROM Employees WHERE Name = '{tournement.Refname}'";
+            string allPlayersQuery = $"SELECT Id, PhoneNumber FROM Players WHERE Name = '{tournement.Playername}'";
+
+            // Eksikver query og gemmer i en variabel
+            DataSet resultSet = Execute(allEmployeesQuery);
+            DataSet playerResultSet = Execute(allPlayersQuery);
+
+            // Får første table af data sættet og gemmer i en variabel
+            DataTable employeeTable = resultSet.Tables[0];
+            DataTable playerTable = playerResultSet.Tables[0];
+
+            foreach (DataRow employeeRow in employeeTable.Rows)
             {
-                Execute(addNewTournementQuery);
+                int refId = (int)employeeRow["Id"];
+                int refPhonenumber = (int)employeeRow["PhoneNumber"];
+                int refLevel = (int)employeeRow["JudgeLevel"];
+                foreach (DataRow playerRow in playerTable.Rows)
+                {
+                    int playerId = (int)playerRow["Id"];
+                    int playerPhonenumber = (int)playerRow["PhoneNumber"];
+                    string addNewTournementQuery =
+                        $"INSERT INTO Tournements (TournermentName, PlayerId, PlayersName, PlayersPhoneNumber, RefId, RefName, RefPhoneNumber, RefLevel) VALUES ('{tournement.Tournermentname}', {playerId}, '{tournement.Playername}', {playerPhonenumber}, {refId}, '{tournement.Refname}', {refPhonenumber}, {refLevel})";
+                    try
+                    {
+                        Execute(addNewTournementQuery);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                    }
+                }
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString());
-            }
+
         }
 
 
@@ -191,7 +229,7 @@ namespace EsportDanmark.Classes
                 int phonenumber = (int)employeeRow["PhoneNumber"];
                 int salary = (int)employeeRow["Salary"];
                 string jobtype = (string)employeeRow["JobType"];
-                int judgelevel = (int)employeeRow["JodgeLevel"];
+                int judgelevel = (int)employeeRow["JudgeLevel"];
                 Employee employee = new Employee(name, phonenumber, salary, jobtype, judgelevel);
                 employeesList.Add(employee);
             }
@@ -217,6 +255,20 @@ namespace EsportDanmark.Classes
             Execute(deleteSponsorQuery);
         }
 
+        // Slette Tournement fra databasen
+        public void deleteTournement(string tournementname)
+        {
+            string deleteTournementQuery =
+                $"DELETE FROM Tournements WHERE TournermentName = '{tournementname}'";
+            Execute(deleteTournementQuery);
+        }
+
+        // Slette Employee fra databasen
+        public void deleteEmployee(string employeeName)
+        {
+            string deleteEmployeeQuery =
+                $"DELETE FROM Employees WHERE Name = '{employeeName}'";
+        }
 
         // Opdater fra databasen
 
@@ -235,6 +287,51 @@ namespace EsportDanmark.Classes
             string updateSponsorQuery =
                 $"UPDATE Sponsorers SET CompanyName = '{sponsor.Companyname}', Branche = '{sponsor.Branche}', PlayerId = {sponsor.Playerid}, PlayerName = '{sponsor.Playername}', PlayerSalery = {sponsor.Playersalery} WHERE CompanyName = '{beforecompanyname}'";
             Execute(updateSponsorQuery);
+        }
+
+
+        // Opdater Tournement
+        public void updateTournement(Tournement tournement, string beforetournement)
+        {
+            string allEmployeesQuery = $"SELECT Id, PhoneNumber, JudgeLevel FROM Employees WHERE Name = '{tournement.Refname}'";
+            string allPlayersQuery = $"SELECT Id, PhoneNumber FROM Players WHERE Name = '{tournement.Playername}'";
+
+            // Eksikver query og gemmer i en variabel
+            DataSet resultSet = Execute(allEmployeesQuery);
+            DataSet playerResultSet = Execute(allPlayersQuery);
+
+            // Får første table af data sættet og gemmer i en variabel
+            DataTable employeeTable = resultSet.Tables[0];
+            DataTable playerTable = playerResultSet.Tables[0];
+
+            foreach (DataRow employeeRow in employeeTable.Rows)
+            {
+                int refId = (int)employeeRow["Id"];
+                int refPhonenumber = (int)employeeRow["PhoneNumber"];
+                int refLevel = (int)employeeRow["JudgeLevel"];
+                foreach (DataRow playerRow in playerTable.Rows)
+                {
+                    int playerId = (int)playerRow["Id"];
+                    int playerPhonenumber = (int)playerRow["PhoneNumber"];
+                    string addupdateTournementQuery =
+                        $"UPDATE Tournements SET TournermentName = '{tournement.Tournermentname}', PlayerId = {playerId}, PlayersName = '{tournement.Playername}', PlayersPhoneNumber = {playerPhonenumber}, RefId = {refId}, RefName = '{tournement.Refname}', RefPhoneNumber = {refPhonenumber}, RefLevel = {refLevel} WHERE TournermentName = '{beforetournement}'";
+                    try
+                    {
+                        Execute(addupdateTournementQuery);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                    }
+                }
+            }
+        }
+
+        public void UpdateEmployee(Employee employee, string beforeemployee)
+        {
+            string updateEmployeeQuery =
+                $"UPDATE Employees SET Name = '{employee.Name}', PhoneNumber = {employee.Phonenumber}, Salary = {employee.Salary}, JobType = '{employee.Jobtype}', JudgeLevel = {employee.Judgelevel} WHERE Name = '{beforeemployee}'";
+            Execute(updateEmployeeQuery);
         }
     }
 }

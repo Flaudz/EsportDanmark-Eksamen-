@@ -32,5 +32,12 @@ namespace EsportDanmark.Classes
             Refphonenumber = refphonenumber;
             Reflevel = reflevel;
         }
+
+        public Tournement(string tournermentname, string playername, string refname)
+        {
+            Tournermentname = tournermentname;
+            Playername = playername;
+            Refname = refname;
+        }
     }
 }

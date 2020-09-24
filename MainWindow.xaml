@@ -47,8 +47,8 @@
             <Canvas x:Name="addCanvasMenu" Visibility="Visible">
                 <Button x:Name="addPlayersBtn" Width="250" FontSize="40" Content="Spillere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="50" Click="addPlayersBtn_Click"/>
                 <Button x:Name="addSponsorersBtn" Width="250" FontSize="40" Content="Sponsorere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="150" Click="addSponsorersBtn_Click"/>
-                <Button x:Name="addTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250"/>
-                <Button x:Name="addEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350"/>
+                <Button x:Name="addTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250" Click="addTournementsBtn_Click"/>
+                <Button x:Name="addEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350" Click="addEmployeesBtn_Click"/>
             </Canvas>
 
             <Canvas Visibility="Hidden" x:Name="addCanvasPlayer">
@@ -70,6 +70,24 @@
 
                 <Button x:Name="addSponsorBtn" Content="Add Sponsor" FontSize="20" FontWeight="Bold" Width="150" Canvas.Left="325" Canvas.Top="500" Click="addSponsorBtn_Click"/>
             </Canvas>
+
+            <Canvas Visibility="Hidden" x:Name="addCanvasTournement">
+                <TextBox x:Name="addTournementNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="Tournement Name"/>
+                <TextBox x:Name="addTournementPlayerNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="Player Name" Canvas.Top="50"/>
+                <TextBox x:Name="addTournementRefNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="Ref Name" Canvas.Top="100"/>
+
+                <Button x:Name="addTournementBtn" Content="Add Tournement" FontSize="20" FontWeight="Bold" Width="200" Canvas.Left="300" Canvas.Top="500" Click="addTournementBtn_Click" />
+            </Canvas>
+
+            <Canvas Visibility="Hidden" x:Name="addCanvasEmployee">
+                <TextBox x:Name="addEmployeeNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="Employee's Name"/>
+                <TextBox x:Name="addEmployeePhoneNumberInput" Width="800" FontSize="25" TextAlignment="Center" Text="PhoneNumber" Canvas.Top="50"/>
+                <TextBox x:Name="addEmployeeSalaryInput" Width="800" FontSize="25" TextAlignment="Center" Text="Salary" Canvas.Top="100"/>
+                <TextBox x:Name="addEmployeeJobtypeInput" Width="800" FontSize="25" TextAlignment="Center" Text="Job type" Canvas.Top="150"/>
+                <TextBox x:Name="addEmployeeJudgelevelInput" Width="800" FontSize="25" TextAlignment="Center" Text="Judge Level" Canvas.Top="200"/>
+
+                <Button x:Name="addEmployeeBtn" Content="Add Sponsor" FontSize="20" FontWeight="Bold" Width="150" Canvas.Left="325" Canvas.Top="500" Click="addEmployeeBtn_Click" />
+            </Canvas>
         </Canvas>
 
 
@@ -78,7 +96,7 @@
             <Canvas x:Name="deleteCanvasMenu" Visibility="Visible">
                 <Button x:Name="deletePlayersBtn" Width="250" FontSize="40" Content="Spillere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="50" Click="deletePlayersBtn_Click" />
                 <Button x:Name="deleteSponsorersBtn" Width="250" FontSize="40" Content="Sponsorere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="150" Click="deleteSponsorersBtn_Click"/>
-                <Button x:Name="deleteTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250"/>
+                <Button x:Name="deleteTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250" Click="deleteTournementsBtn_Click"/>
                 <Button x:Name="deleteEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350"/>
             </Canvas>
 
@@ -91,17 +109,27 @@
                 <TextBox x:Name="deleteSponsorNameInput" Text="Company Name" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="150" />
                 <Button x:Name="deleteSponsorBtn" Content="Delete Sponsor" FontSize="20" FontWeight="Bold" Width="150" Canvas.Left="325" Canvas.Top="500" Click="deleteSponsorBtn_Click"/>
             </Canvas>
+
+            <Canvas x:Name="deleteCanvasTournement" Visibility="Hidden">
+                <TextBox x:Name="deleteTournementNameInput" Text="Tournement Name" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="150" />
+                <Button x:Name="deleteTournementBtn" Content="Delete Tournement" FontSize="20" FontWeight="Bold" Width="200" Canvas.Left="300" Canvas.Top="500" Click="deleteTournementBtn_Click"/>
+            </Canvas>
+
+            <Canvas x:Name="deleteCanvasEmployee" Visibility="Hidden">
+                <TextBox x:Name="deleteEmployeeNameInput" Text="Tournement Name" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="150" />
+                <Button x:Name="deleteEmployeeBtn" Content="Delete Tournement" FontSize="20" FontWeight="Bold" Width="200" Canvas.Left="300" Canvas.Top="500" Click="deleteEmployeeBtn_Click" />
+            </Canvas>
         </Canvas>
 
 
 
-        <Canvas x:Name="updateCanvas" Width="800" Canvas.Left="280" Height="720" Visibility="Hidden">
+        <Canvas x:Name="updateCanvas" Width="800" Canvas.Left="280" Height="720" Visibility="Visible">
             <Canvas x:Name="updateCanvasMenu" Visibility="Visible">
 
                 <Button x:Name="updatePlayersBtn" Width="250" FontSize="40" Content="Spillere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="50" Click="updatePlayersBtn_Click" />
                 <Button x:Name="updateSponsorersBtn" Width="250" FontSize="40" Content="Sponsorere" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="150" Click="updateSponsorersBtn_Click"/>
-                <Button x:Name="updateTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250"/>
-                <Button x:Name="updateEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350"/>
+                <Button x:Name="updateTournementsBtn" Width="250" FontSize="40" Content="Turneringer" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="250" Click="updateTournementsBtn_Click"/>
+                <Button x:Name="updateEmployeesBtn" Width="250" FontSize="40" Content="Ansatte" Background="Transparent" BorderThickness="0" Canvas.Left="275" Canvas.Top="350" Click="updateEmployeesBtn_Click"/>
 
             </Canvas>
 
@@ -125,6 +153,26 @@
                 <TextBox x:Name="chooseSponsorNameInput" Text="Choose the old Comapny Name" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="300" />
 
                 <Button x:Name="updateSponsorBtn" Content="Update Player" FontSize="20" FontWeight="Bold" Width="150" Canvas.Left="325" Canvas.Top="500" Click="updateSponsorBtn_Click" />
+            </Canvas>
+
+            <Canvas x:Name="updateCanvasTounement" Visibility="Hidden">
+                <TextBox x:Name="updateTournementNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="New Tournement Name"/>
+                <TextBox x:Name="updateTournementPlayerNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="New Player Name" Canvas.Top="50"/>
+                <TextBox x:Name="updateTournementRefNameInput" Text="New Ref Name" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="100" />
+                <TextBox x:Name="chooseTournementNameInput" Text="Old Tournement Name" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="150" />
+
+                <Button x:Name="updateTournementBtn" Content="Update Tournement" FontSize="20" FontWeight="Bold" Width="200" Canvas.Left="300" Canvas.Top="500" Click="updateTournementBtn_Click"  />
+            </Canvas>
+
+            <Canvas x:Name="updateCanvasEmployee" Visibility="Hidden">
+                <TextBox x:Name="updateEmployeeNameInput" Width="800" FontSize="25" TextAlignment="Center" Text="New Employee Name"/>
+                <TextBox x:Name="updateEmployeePhoneNumberInput" Width="800" FontSize="25" TextAlignment="Center" Text="New Phonenumber Name" Canvas.Top="50"/>
+                <TextBox x:Name="updateEmployeeSalaryInput" Text="New Employee Salary" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="100" />
+                <TextBox x:Name="updateEmployeeJobtypeInput" Text="New Employee Jobtype" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="150" />
+                <TextBox x:Name="updateEmployeeJudgelevelInput" Text="New Employee Judge Level" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="200" />
+                <TextBox x:Name="chooseEmployeeNameInput" Text="Old Employee's Name" Width="800" FontSize="25" TextAlignment="Center" Canvas.Top="300" />
+
+                <Button x:Name="updateEmployeeBtn" Content="Update Employee" FontSize="20" FontWeight="Bold" Width="200" Canvas.Left="300" Canvas.Top="500" Click="updateEmployeeBtn_Click"/>
             </Canvas>
         </Canvas>
     </Canvas>

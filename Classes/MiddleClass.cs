@@ -37,11 +37,31 @@ namespace EsportDanmark.Classes
             }
         }
 
+        // Creating a Tournement
+        public void CreateTournement()
+        {
+
+        }
+
         // Creating a Sponsor
         public void CreateSponsor(string companyname, string branche, int playerid, string playername, int playersaleryinput)
         {
             Sponsor sponsor = new Sponsor(companyname, branche, playerid, playername, playersaleryinput);
             db.AddNewSponsor(sponsor);
+        }
+
+        // Creating a Tournement
+        public void CreateTournement(string tournementname, string playername, string refname)
+        {
+            Tournement tournement = new Tournement(tournementname, playername, refname);
+            db.AddNewTournement(tournement);
+        }
+
+        // Creating a Employee
+        public void CreateEmployee(string name, int phonenumber, int salary, string jobtype, int judgelevel)
+        {
+            Employee employee = new Employee(name, phonenumber, salary, jobtype, judgelevel);
+            db.AddNewEmployee(employee);
         }
 
         // Getting player information
@@ -99,10 +119,21 @@ namespace EsportDanmark.Classes
             db.deletePlayer(phonenumber);
         }
 
-        // Deleteing Sponsor Information from databas
+        // Deleteing Sponsor Information from database
         public void deleteSponsor(string companyname)
         {
             db.deleteSponsor(companyname);
+        }
+
+        public void deleteTournement(string tournementname)
+        {
+            db.deleteTournement(tournementname);
+        }
+
+        // Deleteing Employee from database
+        public void deleteEmployee(string employeeName)
+        {
+            db.deleteEmployee(employeeName);
         }
 
         // Update Player information
@@ -117,6 +148,20 @@ namespace EsportDanmark.Classes
         {
             Sponsor sponsor = new Sponsor(companyname, branche, playerid, playername, playersaleryinput);
             db.updateSponsor(sponsor, beforecompanyname);
+        }
+
+        // Update Tournement Information
+        public void updateTournement(string tournementname, string playername, string refname, string beforetournement)
+        {
+            Tournement tournement = new Tournement(tournementname, playername, refname);
+            db.updateTournement(tournement, beforetournement);
+        }
+
+        public void updateEmployee(string employeename, int phonenumber, int salary, string jobtype, int judgelevel, string beforeemployee)
+        {
+            Employee employee = new Employee(employeename, phonenumber, salary, jobtype, judgelevel);
+
+            db.UpdateEmployee(employee, beforeemployee);
         }
     }
 }
