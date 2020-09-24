@@ -37,6 +37,13 @@ namespace EsportDanmark.Classes
             }
         }
 
+        // Creating a Sponsor
+        public void CreateSponsor(string companyname, string branche, int playerid, string playername, int playersaleryinput)
+        {
+            Sponsor sponsor = new Sponsor(companyname, branche, playerid, playername, playersaleryinput);
+            db.AddNewSponsor(sponsor);
+        }
+
         // Getting player information
         public string GetPlayerInfo()
         {
@@ -86,17 +93,30 @@ namespace EsportDanmark.Classes
         }
 
 
-        // Deleteing Player information
+        // Deleteing Player information from database
         public void DeletePlayer(int phonenumber)
         {
             db.deletePlayer(phonenumber);
         }
 
+        // Deleteing Sponsor Information from databas
+        public void deleteSponsor(string companyname)
+        {
+            db.deleteSponsor(companyname);
+        }
 
         // Update Player information
         public void updatePlayer(string name, string summonername, int rank, int phonenumber, string tournementype, int beforephonenumber)
         {
             db.updatePlayer(name, summonername, rank, phonenumber, tournementype, beforephonenumber);
+        }
+
+
+        // Update Sponsor Information
+        public void updateSponsor(string companyname, string branche, int playerid, string playername, int playersaleryinput, string beforecompanyname)
+        {
+            Sponsor sponsor = new Sponsor(companyname, branche, playerid, playername, playersaleryinput);
+            db.updateSponsor(sponsor, beforecompanyname);
         }
     }
 }

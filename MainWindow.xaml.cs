@@ -49,11 +49,13 @@ namespace EsportDanmark
             deleteCanvas.Visibility = Visibility.Hidden;
             deleteCanvasMenu.Visibility = Visibility.Visible;
             deleteCanvasPlayer.Visibility = Visibility.Hidden;
+            deleteCanvasSponsor.Visibility = Visibility.Hidden;
 
 
             updateCanvas.Visibility = Visibility.Hidden;
             updateCanvasMenu.Visibility = Visibility.Visible;
             updateCanvasPlayer.Visibility = Visibility.Hidden;
+            updateCanvasSponsor.Visibility = Visibility.Hidden;
         }
 
         private void lookPlayersBtn_Click(object sender, RoutedEventArgs e)
@@ -107,16 +109,19 @@ namespace EsportDanmark
             addCanvas.Visibility = Visibility.Visible;
             addCanvasMenu.Visibility = Visibility.Visible;
             addCanvasPlayer.Visibility = Visibility.Hidden;
+            addCanvasSponsor.Visibility = Visibility.Hidden;
 
 
             deleteCanvas.Visibility = Visibility.Hidden;
             deleteCanvasMenu.Visibility = Visibility.Visible;
             deleteCanvasPlayer.Visibility = Visibility.Hidden;
+            deleteCanvasSponsor.Visibility = Visibility.Hidden;
 
 
             updateCanvas.Visibility = Visibility.Hidden;
             updateCanvasMenu.Visibility = Visibility.Visible;
             updateCanvasPlayer.Visibility = Visibility.Hidden;
+            updateCanvasSponsor.Visibility = Visibility.Hidden;
         }
         private void addPlayersBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -130,7 +135,19 @@ namespace EsportDanmark
             addCanvasMenu.Visibility = Visibility.Visible;
             addCanvas.Visibility = Visibility.Hidden;
         }
+        private void addSponsorersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            addCanvasMenu.Visibility = Visibility.Hidden;
+            addCanvasSponsor.Visibility = Visibility.Visible;
+        }
 
+        private void addSponsorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            middleClass.CreateSponsor(addSponsorCompanyNameInput.Text, addSponsorBrancheInput.Text, int.Parse(addSponsorPlayerIdInput.Text), addSponsorPlayerNameInput.Text, int.Parse(addSponsorPlayerSaleryInput.Text));
+            addCanvasSponsor.Visibility = Visibility.Hidden;
+            addCanvasMenu.Visibility = Visibility.Visible;
+            addCanvas.Visibility = Visibility.Hidden;
+        }
 
         // Delete Section
         private void deleteMenuBtn_Click(object sender, RoutedEventArgs e)
@@ -146,15 +163,18 @@ namespace EsportDanmark
             addCanvas.Visibility = Visibility.Hidden;
             addCanvasMenu.Visibility = Visibility.Visible;
             addCanvasPlayer.Visibility = Visibility.Hidden;
+            addCanvasSponsor.Visibility = Visibility.Hidden;
 
 
             deleteCanvas.Visibility = Visibility.Visible;
             deleteCanvasMenu.Visibility = Visibility.Visible;
             deleteCanvasPlayer.Visibility = Visibility.Hidden;
+            deleteCanvasSponsor.Visibility = Visibility.Hidden;
 
             updateCanvas.Visibility = Visibility.Hidden;
             updateCanvasMenu.Visibility = Visibility.Visible;
             updateCanvasPlayer.Visibility = Visibility.Hidden;
+            updateCanvasSponsor.Visibility = Visibility.Hidden;
         }
 
         private void deletePlayersBtn_Click(object sender, RoutedEventArgs e)
@@ -172,6 +192,23 @@ namespace EsportDanmark
             deleteCanvas.Visibility = Visibility.Hidden;
         }
 
+        private void deleteSponsorersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            deleteCanvasMenu.Visibility = Visibility.Hidden;
+
+            deleteCanvasSponsor.Visibility = Visibility.Visible;
+        }
+
+        private void deleteSponsorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            middleClass.deleteSponsor(deleteSponsorNameInput.Text);
+            deleteCanvasSponsor.Visibility = Visibility.Hidden;
+            deleteCanvasMenu.Visibility = Visibility.Visible;
+            deleteCanvas.Visibility = Visibility.Hidden;
+        }
+
+
+        // Update from database
         private void updateMenuBtn_Click(object sender, RoutedEventArgs e)
         {
             lookCanvas.Visibility = Visibility.Hidden;
@@ -185,15 +222,18 @@ namespace EsportDanmark
             addCanvas.Visibility = Visibility.Hidden;
             addCanvasMenu.Visibility = Visibility.Visible;
             addCanvasPlayer.Visibility = Visibility.Hidden;
+            addCanvasSponsor.Visibility = Visibility.Hidden;
 
 
             deleteCanvas.Visibility = Visibility.Hidden;
             deleteCanvasMenu.Visibility = Visibility.Visible;
             deleteCanvasPlayer.Visibility = Visibility.Hidden;
+            deleteCanvasSponsor.Visibility = Visibility.Hidden;
 
             updateCanvas.Visibility = Visibility.Visible;
             updateCanvasMenu.Visibility = Visibility.Visible;
             updateCanvasPlayer.Visibility = Visibility.Hidden;
+            updateCanvasSponsor.Visibility = Visibility.Hidden;
         }
 
         private void updatePlayersBtn_Click(object sender, RoutedEventArgs e)
@@ -210,8 +250,19 @@ namespace EsportDanmark
             updateCanvasPlayer.Visibility = Visibility.Hidden;
         }
 
+        private void updateSponsorersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            updateCanvasMenu.Visibility = Visibility.Hidden;
+            updateCanvasSponsor.Visibility = Visibility.Visible;
+        }
 
-        // Update from database
+        private void updateSponsorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            middleClass.updateSponsor(updateSponsorCompanyNameInput.Text, updateSponsorBrancheInput.Text, int.Parse(updateSponsorPlayerIdInput.Text), updateSponsorPlayerNameInput.Text, int.Parse(updateSponsorPlayerSaleryInput.Text), chooseSponsorNameInput.Text);
+            updateCanvasMenu.Visibility = Visibility.Visible;
+            updateCanvas.Visibility = Visibility.Hidden;
+            updateCanvasSponsor.Visibility = Visibility.Hidden;
+        }
 
     }
 }

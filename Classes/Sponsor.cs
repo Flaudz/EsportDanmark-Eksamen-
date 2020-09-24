@@ -7,7 +7,6 @@ namespace EsportDanmark.Classes
     public class Sponsor
     {
         // Fields
-        private int id;
         private string companyname;
         private string branche;
         private int playerid;
@@ -16,7 +15,6 @@ namespace EsportDanmark.Classes
 
 
         // Properties
-        public int Id { get => id; }
         public string Companyname { get => companyname; set => companyname = value; }
         public string Branche { get => branche; set => branche = value; }
         public int Playerid { get => playerid; set => playerid = value; }

@@ -60,7 +60,7 @@ namespace EsportDanmark.Classes
         public void AddNewSponsor(Sponsor sponsor)
         {
             string addNewSponsorQuery =
-                $"INSERT INTO Sponsorers (CompanyName, Branche, PlayerId, PlayerName, PlayerSalery) VALUES ('{sponsor.Companyname}', '{sponsor.Branche}', {sponsor.Playerid}, '{sponsor.Playername}, {sponsor.Playersalery}')";
+                $"INSERT INTO Sponsorers (CompanyName, Branche, PlayerId, PlayerName, PlayerSalery) VALUES ('{sponsor.Companyname}', '{sponsor.Branche}', {sponsor.Playerid}, '{sponsor.Playername}', {sponsor.Playersalery})";
             try
             {
                 Execute(addNewSponsorQuery);
@@ -200,6 +200,8 @@ namespace EsportDanmark.Classes
 
 
         // Slette fra DataBasen
+
+        // Slette spiller fra databasen
         public void deletePlayer(int phonenumber)
         {
             string deletePlayerQuery =
@@ -207,13 +209,32 @@ namespace EsportDanmark.Classes
             Execute(deletePlayerQuery);
         }
 
+        // Slette Sponsor fra databasen
+        public void deleteSponsor(string comapanyname)
+        {
+            string deleteSponsorQuery =
+                $"DELETE FROM Sponsorers WHERE CompanyName = '{comapanyname}'";
+            Execute(deleteSponsorQuery);
+        }
+
 
         // Opdater fra databasen
+
+        // Opdatere player fra databasen
         public void updatePlayer(string name, string summonername, int rank, int phonenumber, string tournementtype, int beforephonenumber)
         {
             string updatePlayerQuery =
                 $"UPDATE Players SET Name = '{name}', SummonerName = '{summonername}', Rank = {rank}, PhoneNumber = {phonenumber}, TournermentType = '{tournementtype}' WHERE PhoneNumber = {beforephonenumber}";
             Execute(updatePlayerQuery);
+        }
+
+
+        // Opdater sponsor i databasen
+        public void updateSponsor(Sponsor sponsor, string beforecompanyname)
+        {
+            string updateSponsorQuery =
+                $"UPDATE Sponsorers SET CompanyName = '{sponsor.Companyname}', Branche = '{sponsor.Branche}', PlayerId = {sponsor.Playerid}, PlayerName = '{sponsor.Playername}', PlayerSalery = {sponsor.Playersalery} WHERE CompanyName = '{beforecompanyname}'";
+            Execute(updateSponsorQuery);
         }
     }
 }
